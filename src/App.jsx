@@ -3,7 +3,7 @@ import Form from './Form';
 function App() {
   return (
     <>
-      <h2>Vite + React</h2>
+      <h2>react.WeatherApp</h2>
       <Form />
     </>
   );
