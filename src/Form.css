@@ -3,9 +3,6 @@
   position: relative;
 }
 
-.searchInput {
-}
-
 form {
   margin: 1rem 0;
 }
@@ -22,10 +19,23 @@ form input {
 
 form input:focus {
   outline: 0.2rem solid lightblue;
+  box-shadow: 0 0 1.25rem -0.75rem #333;
 }
 
 form input:focus + ul {
   display: block;
+  animation-name: fadeInOpacity;
+  animation-timing-function: ease-in;
+  animation-duration: 0.1s;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 form button {
@@ -43,6 +53,7 @@ form button:hover {
   color: lightblue;
   background-color: azure;
   outline: 0.2rem solid #6cb4ee;
+  transition-duration: 0.1s;
 }
 
 ul {
@@ -57,4 +68,36 @@ ul {
   margin-top: 0.5rem;
   z-index: 1000;
   list-style: none;
+  background-color: #ffffff;
+  background-image: linear-gradient(315deg, #ffffff 0%, #71a5e263 74%);
+  box-shadow: 0 0 1.25rem -0.75rem #333;
+}
+
+.link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.link li {
+  color: black;
+  font-size: 0.75rem;
+}
+
+.link li span {
+  color: #333;
+  font-size: 0.7rem;
+  opacity: 0.75;
+}
+
+.link:hover {
+  outline: 0.1rem solid #333;
+  border-radius: 0.25rem;
+  transform: scale(1.05);
+  background-color: #ffffff;
+  background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+  filter: drop-shadow(0 0 0.1rem #3333);
+  transition-duration: 0.1s;
 }

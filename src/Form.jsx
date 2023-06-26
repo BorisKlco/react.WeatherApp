@@ -46,7 +46,20 @@ const Form = () => {
             <ul>
               {placeQuery.isLoading
                 ? ''
-                : place.map((item) => <li key={item.name}>{item.name}</li>)}
+                : place.map((item) => (
+                    <>
+                      <a href="#" className="link" key={item.id}>
+                        <img
+                          height="24"
+                          src={`https://open-meteo.com/images/country-flags/${item.country_code}.svg`}
+                          title={item.country}
+                        />
+                        <li>
+                          {item.name} <span>{item.admin1}</span>
+                        </li>
+                      </a>
+                    </>
+                  ))}
             </ul>
           </div>
           <button onClick={getLocation}>Get Location</button>
