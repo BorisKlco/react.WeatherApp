@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import Item from './Item';
 import Weather from './Weather';
 import fetchPlace from './fetchPlace';
+import fetchCity from './fetchCity';
 import './Form.css';
 
 const Form = () => {
@@ -16,10 +17,14 @@ const Form = () => {
   const placeQuery = useQuery(['place', location.place], fetchPlace);
   const place = placeQuery?.data?.results ?? [];
 
-  const getLocation = () => {
+  const getLocation = async () => {
     navigator.geolocation.getCurrentPosition((pos) => {
       const { latitude, longitude } = pos.coords;
-      setLocation({ ...location, latitude: latitude, longitude: longitude });
+      setLocation({
+        place: 'My Location',
+        latitude: latitude,
+        longitude: longitude,
+      });
     });
     setSelected(false);
   };

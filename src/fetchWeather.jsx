@@ -6,7 +6,7 @@ async function fetchWeather({ queryKey }) {
   );
 
   if (!res.ok) {
-    throw new Error(`Weather search - Not ok - ${place} `);
+    throw new Error(`Weather search - Not ok`);
   }
 
   return res.json();
