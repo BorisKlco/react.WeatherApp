@@ -31,6 +31,7 @@ const Form = () => {
             }}
             type="text"
             placeholder="Search Location"
+            value={location.place}
           />
           <button onClick={getLocation}>Get Location</button>
         </div>
@@ -42,9 +43,7 @@ const Form = () => {
       <ul>
         {result.isLoading
           ? 'Loading...'
-          : place.map((item) => 
-              <li>{item.name}</li>
-            )}
+          : place.map((item) => <li>{item.name}</li>)}
       </ul>
     </>
   );
