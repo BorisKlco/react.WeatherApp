@@ -1,24 +1,18 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Item from './Item';
+import Weather from './Weather';
 import fetchPlace from './fetchPlace';
-import fetchWeather from './fetchWeather';
 import './Form.css';
 
 const Form = () => {
   const [location, setLocation] = useState({
-    place: '',
+    place: 'Bratislava',
     latitude: 48.1188551,
     longitude: 17.0997146,
   });
-
   const [selected, setSelected] = useState(false);
 
-  const weatherQuery = useQuery(['weather', location], {
-    fetchWeather,
-    enabled: false,
-  });
-  const weather = weatherQuery?.data ?? [];
   const placeQuery = useQuery(['place', location.place], fetchPlace);
   const place = placeQuery?.data?.results ?? [];
 
@@ -27,6 +21,7 @@ const Form = () => {
       const { latitude, longitude } = pos.coords;
       setLocation({ ...location, latitude: latitude, longitude: longitude });
     });
+    setSelected(false);
   };
 
   const handlePlace = (index) => {
@@ -58,7 +53,6 @@ const Form = () => {
             />
             {selected && place.length > 0 && (
               <ul>
-                {console.log(place)}
                 {placeQuery.isLoading
                   ? ''
                   : place.map((item, index) => (
@@ -74,6 +68,7 @@ const Form = () => {
           </button>
         </div>
       </form>
+      {!selected && <Weather location={location} />}
     </>
   );
 };
