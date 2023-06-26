@@ -1,12 +1,22 @@
+.search {
+  display: flex;
+  position: relative;
+}
+
+.searchInput {
+}
+
 form {
   margin: 1rem 0;
 }
 
 form input {
+  font-size: 1.25rem;
+  width: 20rem;
   border: none;
   border-radius: 0.1rem;
   outline: 0.1rem solid lightblue;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.75rem;
   margin-right: 0.75rem;
 }
 
@@ -14,7 +24,12 @@ form input:focus {
   outline: 0.2rem solid lightblue;
 }
 
+form input:focus + ul {
+  display: block;
+}
+
 form button {
+  font-size: 1.25rem;
   border-radius: 0.1rem;
   font-weight: bold;
   color: whitesmoke;
@@ -28,4 +43,18 @@ form button:hover {
   color: lightblue;
   background-color: azure;
   outline: 0.2rem solid #6cb4ee;
+}
+
+ul {
+  display: none;
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
+  width: 20rem;
+  border: 0.1rem solid #333;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  z-index: 1000;
+  list-style: none;
 }

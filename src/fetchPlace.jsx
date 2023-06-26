@@ -1,14 +1,12 @@
 async function fetchPlace({ queryKey }) {
   const place = queryKey[1];
 
-  console.log(import.meta.env.API);
-
   const res = await fetch(
     `https://geocoding-api.open-meteo.com/v1/search?name=${place}`
   );
 
   if (!res.ok) {
-    throw new Error(`pet search - Not ok - ${place} `);
+    throw new Error(`Place search - Not ok - ${place} `);
   }
 
   return res.json();
