@@ -12,6 +12,8 @@ const Form = () => {
     longitude: 17.0997146,
   });
 
+  const [test, setTest] = useState('empty');
+
   const weatherQuery = useQuery(['weather', location], {
     fetchWeather,
     enabled: false,
@@ -29,11 +31,13 @@ const Form = () => {
   };
 
   const handlePlace = () => {
-    console.log('hi');
+    setTest('funguje');
+    console.log(1);
   };
 
   return (
     <>
+      <p>Test: {test}</p>
       <p>Place: {location.place}</p>
       <p>Lat: {location.latitude}</p>
       <p>Lon: {location.longitude}</p>
