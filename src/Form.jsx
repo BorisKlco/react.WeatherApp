@@ -48,20 +48,22 @@ const Form = () => {
               placeholder="Search Location"
               value={location.place}
             />
-            <ul>
-              {placeQuery.isLoading
-                ? ''
-                : place.map((item) => (
-                    <Item
-                      onClick={handlePlace}
-                      key={item.id}
-                      img={item.country_code}
-                      country={item.country}
-                      itemName={item.name}
-                      itemSec={item.admin1}
-                    />
-                  ))}
-            </ul>
+            {place.length > 1 && (
+              <ul>
+                {placeQuery.isLoading
+                  ? ''
+                  : place.map((item) => (
+                      <Item
+                        onClick={handlePlace}
+                        key={item.id}
+                        img={item.country_code}
+                        country={item.country}
+                        itemName={item.name}
+                        itemSec={item.admin1}
+                      />
+                    ))}
+              </ul>
+            )}
           </div>
           <button className="submit" onClick={getLocation}>
             Get Location
