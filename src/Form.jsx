@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import Item from './Item';
 import fetchPlace from './fetchPlace';
 import fetchWeather from './fetchWeather';
 import './Form.css';
@@ -27,6 +28,10 @@ const Form = () => {
     });
   };
 
+  const handlePlace = () => {
+    console.log('hi');
+  };
+
   return (
     <>
       <p>Place: {location.place}</p>
@@ -47,22 +52,20 @@ const Form = () => {
               {placeQuery.isLoading
                 ? ''
                 : place.map((item) => (
-                    <>
-                      <a href="#" className="link" key={item.id}>
-                        <img
-                          height="24"
-                          src={`https://open-meteo.com/images/country-flags/${item.country_code}.svg`}
-                          title={item.country}
-                        />
-                        <li>
-                          {item.name} <span>{item.admin1}</span>
-                        </li>
-                      </a>
-                    </>
+                    <Item
+                      onClick={handlePlace}
+                      key={item.id}
+                      img={item.country_code}
+                      country={item.country}
+                      itemName={item.name}
+                      itemSec={item.admin1}
+                    />
                   ))}
             </ul>
           </div>
-          <button onClick={getLocation}>Get Location</button>
+          <button className="submit" onClick={getLocation}>
+            Get Location
+          </button>
         </div>
       </form>
     </>
