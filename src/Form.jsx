@@ -7,12 +7,12 @@ import './Form.css';
 
 const Form = () => {
   const [location, setLocation] = useState({
-    place: 'Bratislava',
+    place: '',
     latitude: 48.1188551,
     longitude: 17.0997146,
   });
 
-  const [test, setTest] = useState('empty');
+  const [selected, setSelected] = useState(false);
 
   const weatherQuery = useQuery(['weather', location], {
     fetchWeather,
@@ -26,18 +26,21 @@ const Form = () => {
     navigator.geolocation.getCurrentPosition((pos) => {
       const { latitude, longitude } = pos.coords;
       setLocation({ ...location, latitude: latitude, longitude: longitude });
-      console.log(location);
     });
   };
 
-  const handlePlace = () => {
-    setTest('funguje');
-    console.log(1);
+  const handlePlace = (index) => {
+    setLocation({
+      ...location,
+      place: place[index].name,
+      latitude: place[index].latitude,
+      longitude: place[index].longitude,
+    });
+    setSelected(false);
   };
 
   return (
     <>
-      <p>Test: {test}</p>
       <p>Place: {location.place}</p>
       <p>Lat: {location.latitude}</p>
       <p>Lon: {location.longitude}</p>
@@ -45,6 +48,7 @@ const Form = () => {
         <div className="search">
           <div className="searchInput">
             <input
+              onClick={() => setSelected(true)}
               onChange={(e) => {
                 setLocation({ ...location, place: e.target.value });
               }}
@@ -52,19 +56,15 @@ const Form = () => {
               placeholder="Search Location"
               value={location.place}
             />
-            {place.length > 1 && (
+            {selected && place.length > 0 && (
               <ul>
+                {console.log(place)}
                 {placeQuery.isLoading
                   ? ''
-                  : place.map((item) => (
-                      <Item
-                        onClick={handlePlace}
-                        key={item.id}
-                        img={item.country_code}
-                        country={item.country}
-                        itemName={item.name}
-                        itemSec={item.admin1}
-                      />
+                  : place.map((item, index) => (
+                      <div onClick={() => handlePlace(index)} key={item.id}>
+                        <Item item={item} />
+                      </div>
                     ))}
               </ul>
             )}

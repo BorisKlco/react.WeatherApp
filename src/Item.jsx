@@ -1,15 +1,13 @@
-const Item = ({ img, country, itemName, itemSec }) => {
+const Item = ({ item }) => {
   return (
-    <button className="link">
+    <li className="link">
       <img
         height="24"
-        src={`https://open-meteo.com/images/country-flags/${img}.svg`}
-        title={country}
+        src={`https://open-meteo.com/images/country-flags/${item.country_code}.svg`}
+        title={item.country}
       />
-      <li>
-        {itemName} <span>{itemSec}</span>
-      </li>
-    </button>
+      {item.name} <span>{item.admin1}</span>
+    </li>
   );
 };
 
