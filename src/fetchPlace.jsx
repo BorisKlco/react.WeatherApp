@@ -1,6 +1,8 @@
 async function fetchPlace({ queryKey }) {
   const place = queryKey[1];
 
+  console.log(import.meta.env.API);
+
   const res = await fetch(
     `https://geocoding-api.open-meteo.com/v1/search?name=${place}`
   );
